@@ -173,7 +173,7 @@ const WaveCanvas: React.FC<WaveCanvasProps> = ({ frequency, obstacleSize, metric
   }, [frequency, obstacleSize, metrics]);
 
   return (
-    <div ref={containerRef} className="w-full h-full min-h-[400px] relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950">
+    <div ref={containerRef} className="w-full h-full min-h-[320px] relative rounded-lg overflow-hidden border border-zinc-800 bg-zinc-950">
       <canvas ref={canvasRef} className="block w-full h-full" />
       
       {/* Overlay Stats on Canvas */}

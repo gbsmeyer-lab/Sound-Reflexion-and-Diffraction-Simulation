@@ -1,5 +1,5 @@
 {
-  "name": "AcousticFlow Visualisierer",
+  "name": "Schallausbreitung Visualisierer",
   "description": "Ein visuelles Werkzeug für audiovisuelle Mediendesigner zur Simulation und zum Verständnis von Schallreflexion und Beugung basierend auf Frequenz und Hindernisdimensionen.",
   "requestFramePermissions": []
 }

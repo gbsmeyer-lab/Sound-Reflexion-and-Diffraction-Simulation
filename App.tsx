@@ -28,13 +28,13 @@ const App: React.FC = () => {
       
       {/* Header */}
       <header className="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-4 md:px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center shadow-lg shadow-purple-900/20">
               <Waves className="text-white w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-xl font-bold tracking-tight">AcousticFlow</h1>
+              <h1 className="text-xl font-bold tracking-tight">Schallausbreitung</h1>
               <p className="text-xs text-zinc-400">Visualisierung von Schallreflexion & Beugung</p>
             </div>
           </div>
@@ -44,7 +44,7 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 md:px-6 py-8">
+      <main className="max-w-5xl mx-auto px-4 md:px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
           {/* LEFT COLUMN: Controls & Metrics */}
@@ -149,8 +149,8 @@ const App: React.FC = () => {
 
           {/* RIGHT COLUMN: Visualizer */}
           <div className="lg:col-span-8 flex flex-col justify-start">
-             {/* Container height set to match approx visual weight of left col, or 50% of previous design */}
-            <div className="h-[600px] w-full">
+             {/* Container height reduced from 600px to 480px (20% reduction) */}
+            <div className="h-[480px] w-full">
                 <WaveCanvas 
                     frequency={params.frequency} 
                     obstacleSize={params.obstacleSize}
