@@ -1,0 +1,5 @@
+{
+  "name": "Schallreflexion und -beugung Visualizer",
+  "description": "Ein visuelles Werkzeug für Audio-Visuelle Mediengestalter, um Schallreflexion und -beugung basierend auf Frequenz und Hindernisabmessungen zu simulieren.",
+  "requestFramePermissions": []
+}
