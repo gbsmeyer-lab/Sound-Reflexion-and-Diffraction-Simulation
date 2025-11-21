@@ -1,7 +1,6 @@
 import React from 'react';
 
-// Component removed as per request to remove AI features.
-const GeminiAssistant: React.FC<any> = () => {
+const GeminiAssistant: React.FC = () => {
   return null;
 };
 

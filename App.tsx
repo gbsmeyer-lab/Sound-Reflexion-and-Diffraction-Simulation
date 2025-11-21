@@ -24,7 +24,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="h-screen max-h-[800px] bg-zinc-950 text-zinc-100 font-sans selection:bg-purple-500/30 flex flex-col overflow-y-auto">
+    <div className="h-screen max-h-[800px] bg-zinc-950 text-zinc-100 font-sans selection:bg-purple-500/30 flex flex-col overflow-hidden">
       
       {/* Header */}
       <header className="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur sticky top-0 z-10 flex-none">
@@ -44,16 +44,12 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-4">
-        {/* Grid layout: 
-            items-stretch (default) ensures equal height columns.
-            No h-full on grid or columns -> Height is dictated by content (Controls on left). 
-        */}
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 items-stretch">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-4 min-h-0">
+        {/* Grid layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 h-full">
           
-          {/* LEFT COLUMN: Controls & Metrics (30% width) 
-              Content dictates height of this row. */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
+          {/* LEFT COLUMN: Controls & Metrics (30% width) */}
+          <div className="lg:col-span-3 flex flex-col gap-3 overflow-y-auto pr-2">
             
             {/* Controls Card */}
             <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3.5 shadow-lg shrink-0">
@@ -152,14 +148,10 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Visualizer (50% width) 
-              Matches height of left column automatically due to grid stretch.
-          */}
-          <div className="lg:col-span-5 flex flex-col">
-            {/* Wave Canvas 
-                h-full fills the grid cell, which is exactly as tall as the left column content.
-            */}
-            <div className="w-full h-full relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-inner min-h-[300px]">
+          {/* RIGHT COLUMN: Visualizer (50% width) */}
+          <div className="lg:col-span-5 flex flex-col justify-center">
+            {/* Wave Canvas Container - Reduced to 50% height */}
+            <div className="w-full h-1/2 relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-inner min-h-[300px]">
                <WaveCanvas 
                   frequency={params.frequency} 
                   obstacleSize={params.obstacleSize}
