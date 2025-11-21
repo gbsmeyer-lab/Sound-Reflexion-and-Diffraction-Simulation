@@ -1,7 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Settings, Info, Waves, Box, Ruler } from 'lucide-react';
 import WaveCanvas from './components/WaveCanvas';
-import GeminiAssistant from './components/GeminiAssistant';
 import { calculateMetrics } from './utils/physics';
 import { SimulationParams } from './types';
 
@@ -25,7 +24,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-purple-500/30 flex flex-col">
+    <div className="h-screen max-h-[800px] bg-zinc-950 text-zinc-100 font-sans selection:bg-purple-500/30 flex flex-col overflow-hidden">
       
       {/* Header */}
       <header className="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur sticky top-0 z-10 flex-none">
@@ -45,18 +44,20 @@ const App: React.FC = () => {
         </div>
       </header>
 
-      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-4">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-4 min-h-0">
         {/* Grid layout: 10 columns total.
-            Left: 3 cols (30%) - Maintained.
-            Right: 5 cols (50%) - Reduced from 7 cols (70%), roughly 1/3 reduction.
-            Remaining: 2 cols empty space. */}
-        <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 items-start">
+            Left: 3 cols (30%).
+            Right: 5 cols (50%).
+            Remaining: 2 cols empty space. 
+            h-full ensures it fills the flex-1 parent. */}
+        <div className="h-full grid grid-cols-1 lg:grid-cols-10 gap-4">
           
-          {/* LEFT COLUMN: Controls & Metrics (30% width) */}
-          <div className="lg:col-span-3 flex flex-col gap-3">
+          {/* LEFT COLUMN: Controls & Metrics (30% width) 
+              overflow-y-auto allows scrolling just this panel if vertical space is tight */}
+          <div className="lg:col-span-3 flex flex-col gap-3 h-full overflow-y-auto pr-1 custom-scrollbar">
             
             {/* Controls Card */}
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3.5 shadow-lg">
+            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3.5 shadow-lg shrink-0">
               <h2 className="text-xs font-semibold mb-3 flex items-center gap-2 text-zinc-200 uppercase tracking-wider">
                 <Settings className="w-3.5 h-3.5 text-blue-400" /> Einstellungen
               </h2>
@@ -109,7 +110,7 @@ const App: React.FC = () => {
             </div>
 
             {/* Metrics Card */}
-            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3.5 shadow-lg flex flex-col">
+            <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-3.5 shadow-lg flex flex-col shrink-0">
               <h2 className="text-xs font-semibold mb-3 flex items-center gap-2 text-zinc-200 uppercase tracking-wider">
                 <Ruler className="w-3.5 h-3.5 text-green-400" /> Physik-Daten
               </h2>
@@ -152,25 +153,18 @@ const App: React.FC = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Visualizer & AI (50% width) */}
-          <div className="lg:col-span-5 flex flex-col gap-3">
+          {/* RIGHT COLUMN: Visualizer (50% width) */}
+          <div className="lg:col-span-5 flex flex-col h-full min-h-0">
             
-            {/* Wave Canvas - Fixed smaller height */}
-            <div className="w-full h-[280px] relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-inner shrink-0">
+            {/* Wave Canvas 
+                Reduced height to h-1/2 as requested
+            */}
+            <div className="w-full h-1/2 relative rounded-xl overflow-hidden border border-zinc-800 bg-zinc-950 shadow-inner shrink-0">
                <WaveCanvas 
                   frequency={params.frequency} 
                   obstacleSize={params.obstacleSize}
                   metrics={metrics}
               />
-            </div>
-            
-            {/* AI Assistant */}
-            <div className="">
-                <GeminiAssistant 
-                    metrics={metrics} 
-                    frequency={params.frequency} 
-                    obstacleSize={params.obstacleSize} 
-                />
             </div>
           </div>
 
